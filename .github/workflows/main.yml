@@ -12,11 +12,10 @@ jobs:
 
     - name: Copy file via scp
       uses: appleboy/scp-action@master
-      env:
+      with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-      with:
         source: "."
         target: "~/videochat"
 
@@ -26,4 +25,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: node ~/videochat/index.js
+        script: cd ~/videochat && node index.js
