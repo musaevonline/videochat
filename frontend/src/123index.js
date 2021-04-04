@@ -148,6 +148,3 @@ function setCookie(name, value, options = {}) {
 
   document.cookie = updatedCookie;
 }
-
-// Пример использования:
-setCookie('user', 'John', {secure: true, 'max-age': 3600});
