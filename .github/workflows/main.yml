@@ -15,4 +15,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: cd ~/videochat && git pull && npm i --only=prod ; node index.js &
+        script: cd ~/videochat && git pull && npm i --only=prod && systemctl restart videochat
