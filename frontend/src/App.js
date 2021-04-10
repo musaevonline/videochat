@@ -135,7 +135,7 @@ export class App extends React.Component {
   }
 
   initWebSocket() {
-    this.socket = new WebSocket(`wss://${location.host}${process.env.APP_ENV === 'server' ? '/videochat' : ''}`);
+    this.socket = new WebSocket(`wss://${location.host}${window.ENV === 'server' ? '/videochat' : ''}`);
 
     this.socket.onmessage = async ({ data }) => {
       data = JSON.parse(data);
