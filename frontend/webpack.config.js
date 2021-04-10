@@ -1,7 +1,14 @@
 const path = require("path");
 
+const ENVIRONMENTS = {
+  'dev': 'development',
+  'prod': 'production',
+  'server': 'production'
+}
+
 module.exports = {
-  mode: "development",
+  mode: ENVIRONMENTS[process.env.NODE_ENV] || "development",
+  publicPath: process.env.NODE_ENV === 'server' ? '/videochat' : '/',
   module: {
     rules: [
       {
