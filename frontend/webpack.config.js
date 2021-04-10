@@ -1,14 +1,11 @@
 const path = require("path");
 
-const ENVIRONMENTS = {
-  'dev': 'development',
-  'prod': 'production',
-  'server': 'production'
-}
-
+console.log(`${process.env.NODE_ENV} building`)
 module.exports = {
-  mode: ENVIRONMENTS[process.env.NODE_ENV] || "development",
-  publicPath: process.env.NODE_ENV === 'server' ? '/videochat' : '/',
+  mode: process.env.NODE_ENV || "development",
+  output: {
+    publicPath: process.env.APP_ENV === 'server' ? '/videochat' : '/',
+  },
   module: {
     rules: [
       {
