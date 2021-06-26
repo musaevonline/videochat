@@ -39,7 +39,7 @@ const VideoElement = styled.video`
 
   @media (orientation: portrait) {
     width: 100%;
-    height: 200px;
+    height: 35vh;
   }
 `;
 
