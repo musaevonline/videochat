@@ -21,50 +21,26 @@ const Header = styled.div`
 const VideoContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin: 24px 95px 0 95px;
-  gap: 1vw;
-  @media (max-width: 800px) {
-    margin: 24px 5vw 0 5vw;
-  }
+  margin: 20px;
+  gap: 20px;
   @media (orientation: portrait) {
-    margin: 24px 20vw 0 20vw;
     flex-direction: column;
   }
-  @media (max-width: 500px) {
-    margin: 24px 5vw 0 5vw;
-  }
 `;
 
-const VideoWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-  flex-grow: 1;
-  flex-basis: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: black;
-  box-shadow: 5px 10px 30px -5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-
-  @media (orientation: portrait) {
-    height: 0;
-  }
-
-  &:after {
-    content: "";
-    padding-top: 75%;
-    display: block;
-  }
-`;
 const VideoElement = styled.video`
-  width: 500px;
+  width: 50%;
   height: 350px;
   object-fit: cover;
 
   background: black;
   box-shadow: 5px 10px 30px -5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+
+  @media (orientation: portrait) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
 const Button = styled.button`
@@ -86,6 +62,7 @@ const Button = styled.button`
     box-shadow: inset 0 0 30px -5px rgba(0, 0, 0, 0.5);
   }
 `;
+
 
 const Video = React.forwardRef(({ children }, ref) => (
   <VideoElement ref={ref} />
