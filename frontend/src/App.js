@@ -30,9 +30,10 @@ const VideoContainer = styled.div`
 
 const VideoElement = styled.video`
   width: 50%;
+  max-width: 500px;
   height: 350px;
   object-fit: cover;
-
+  transform: rotateY(180deg);
   background: black;
   box-shadow: 5px 10px 30px -5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -63,7 +64,6 @@ const Button = styled.button`
   }
 `;
 
-
 const Video = React.forwardRef(({ children }, ref) => (
   <VideoElement ref={ref} />
 ));
@@ -83,19 +83,14 @@ export class App extends React.Component {
     this.remoteVideoElement.current.autoplay = true;
     this.localVideoElement.current.autoplay = true;
     this.localVideoElement.current.muted = true;
+    this.init();
+  }
+
+  init( video = true ) {
     window.navigator.mediaDevices
-      .getUserMedia({
-        audio: true,
-        video: true,
-      })
+      .getUserMedia({ audio: true, video })
       .then((localStream) => this.initLocalVideo(localStream))
-      .catch(() => {
-        window.navigator.mediaDevices
-          .getUserMedia({
-            audio: true,
-          })
-          .then((localStream) => this.initLocalVideo(localStream));
-      });
+      .catch(() => video ? this.init(false) : null);
   }
 
   initLocalVideo(localStream) {
@@ -112,7 +107,9 @@ export class App extends React.Component {
   }
 
   initWebSocket() {
-    this.socket = new WebSocket(`wss://${location.host}${window.ENV === 'server' ? '/videochat/ws' : ''}`);
+    this.socket = new WebSocket(
+      `wss://${location.host}${window.ENV === "server" ? "/videochat/ws" : ""}`
+    );
 
     this.socket.onmessage = async ({ data }) => {
       data = JSON.parse(data);
